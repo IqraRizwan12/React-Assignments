@@ -36,6 +36,10 @@ function App() {
     setUserInput('')
   }
 
+  function deleteAll() {
+    setList([])
+  }
+
   function updateInputState(e) {
     setUserInput(e.target.value)
   }
@@ -46,17 +50,17 @@ function App() {
         <input onChange={updateInputState} placeholder='Enter any item' value={userInput} />
         {!editMode ? <button onClick={addItem}>Add</button> :
           <button onClick={updateItem}>Update</button>}
+        <button onClick={deleteAll}>Delete All</button>
 
         <ul>
           {list.map(function (item, index) {
-            return <li style={currentIndex===index ?{backgroundColor:'orange'}:{}}>{item}<button onClick={() => deleteItem(index)}>Delete</button>
+            return <li style={currentIndex === index && editMode ? { backgroundColor: 'orange' } : {}}>{item}<button onClick={() => deleteItem(index)}>Delete</button>
               <button onClick={() => editItem(index)} value={userInput}>Edit</button></li>
 
           })}
 
         </ul>
-
-
+        
       </header>
     </div>
   );
