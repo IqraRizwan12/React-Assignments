@@ -19,6 +19,7 @@ function App() {
     const tempList = [...list]
     tempList.splice(index, 1)
     setList(tempList)
+    setCurrentIndex('')
   }
 
   function editItem(index) {
@@ -34,6 +35,7 @@ function App() {
     setList(tempList)
     setEditMode(false)
     setUserInput('')
+    setCurrentIndex('')
   }
 
   function deleteAll() {
@@ -54,13 +56,14 @@ function App() {
 
         <ul>
           {list.map(function (item, index) {
-            return <li style={currentIndex === index && editMode ? { backgroundColor: 'orange' } : {}}>{item}<button onClick={() => deleteItem(index)}>Delete</button>
+            return <li style={currentIndex === index  ? { backgroundColor: 'orange' } : {}}>{item}
+              <button onClick={() => deleteItem(index)}>Delete</button>
               <button onClick={() => editItem(index)} value={userInput}>Edit</button></li>
 
           })}
 
         </ul>
-        
+
       </header>
     </div>
   );
